@@ -28,27 +28,6 @@ class MethodChannelQrBarCodeScannerDialog
       {BuildContext? context, required Function(String? code) onScanSuccess}) {
     /// context is required to show alert in non-web platforms
     assert(context != null);
-/**
- * Container(
-              alignment: Alignment.center,
-              child: Container(
-                height: 400,
-                width: 600,
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ScannerWidget(onScanSuccess: (code) {
-                  if (code != null) {
-                    Navigator.pop(context);
-                    onScanSuccess(code);
-                  }
-                }),
-              ),
-            ))
- */
     showCupertinoDialog(
         barrierDismissible: true,
         context: context!,
@@ -112,7 +91,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     super.dispose();
   }
 
-  bool isPressed = false;
+  bool isPressedFlash = false;
+  bool isPressed2Camera = false;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -125,11 +105,26 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           ),
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
-                onPressed: () {},
-                icon: Icon(CupertinoIcons.camera_rotate_fill)),
+              icon: AnimatedSwitcher(
+                duration: Duration(milliseconds: 200),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(child: child, scale: animation);
+                },
+                child: Icon(
+                  isPressed2Camera ? Icons.camera_front : Icons.camera_rear,
+                  key: ValueKey<bool>(isPressed2Camera),
+                ),
+              ),
+              onPressed: () async {
+                await controller!.flipCamera();
+                setState(() {
+                  isPressed2Camera = !isPressed2Camera;
+                });
+              },
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
@@ -140,18 +135,22 @@ class _ScannerWidgetState extends State<ScannerWidget> {
               onPressed: () async {
                 await controller!.toggleFlash();
                 setState(() {
-                  isPressed = !isPressed;
+                  isPressedFlash = !isPressedFlash;
                 });
               },
-              icon: isPressed
-                  ? Icon(
-                      Icons.flash_on_rounded,
-                      color: Colors.yellow,
-                    )
-                  : Icon(
-                      Icons.flash_off_rounded,
-                      color: Colors.grey,
-                    ),
+              icon: AnimatedSwitcher(
+                duration: Duration(milliseconds: 200),
+                transitionBuilder: (Widget child, Animation<double> animation) {
+                  return ScaleTransition(child: child, scale: animation);
+                },
+                child: Icon(
+                  isPressedFlash
+                      ? Icons.flash_on_rounded
+                      : Icons.flash_off_rounded,
+                  color: isPressedFlash ? Colors.yellow : Colors.grey,
+                  key: ValueKey<bool>(isPressedFlash),
+                ),
+              ),
             ),
           ],
         )
@@ -171,11 +170,11 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         _onQRViewCreated(controller);
       },
       overlay: QrScannerOverlayShape(
-          borderColor: Colors.black,
+          borderColor: const Color.fromARGB(255, 27, 94, 32),
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 10,
-          cutOutSize: smallestDimension - 140),
+          cutOutSize: smallestDimension - 100),
     );
   }
 

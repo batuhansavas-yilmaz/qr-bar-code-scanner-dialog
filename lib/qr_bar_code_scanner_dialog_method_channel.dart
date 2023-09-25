@@ -94,17 +94,21 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             child: _buildQrView(context),
           ),
         ),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: const Text("Stop Scanning"),
-        ),
-        IconButton(
-            onPressed: () async {
-              await controller!.toggleFlash();
-            },
-            icon: const Icon(Icons.flash_on_rounded))
+        Row(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text("Stop Scanning"),
+            ),
+            IconButton(
+                onPressed: () async {
+                  await controller!.toggleFlash();
+                },
+                icon: const Icon(Icons.flash_on_rounded)),
+          ],
+        )
       ],
     );
   }

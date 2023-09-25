@@ -66,12 +66,6 @@ class MethodChannelQrBarCodeScannerDialog
   }
 }
 
-/**
- * 
- * 
- * ,
- * 
- */
 class ScannerWidget extends StatefulWidget {
   final void Function(String? code) onScanSuccess;
 

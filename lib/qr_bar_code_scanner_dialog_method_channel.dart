@@ -173,6 +173,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           borderColor: Color.fromARGB(255, 85, 2, 2),
           borderRadius: 10,
           borderLength: 30,
+          cutOutHeight: 400,
+          cutOutWidth: 600,
           borderWidth: 3,
           cutOutSize: smallestDimension - 140),
     );

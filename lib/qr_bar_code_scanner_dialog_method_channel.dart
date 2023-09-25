@@ -28,7 +28,27 @@ class MethodChannelQrBarCodeScannerDialog
       {BuildContext? context, required Function(String? code) onScanSuccess}) {
     /// context is required to show alert in non-web platforms
     assert(context != null);
-
+/**
+ * Container(
+              alignment: Alignment.center,
+              child: Container(
+                height: 400,
+                width: 600,
+                margin: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: ScannerWidget(onScanSuccess: (code) {
+                  if (code != null) {
+                    Navigator.pop(context);
+                    onScanSuccess(code);
+                  }
+                }),
+              ),
+            ))
+ */
     showCupertinoDialog(
         barrierDismissible: true,
         context: context!,
@@ -39,12 +59,19 @@ class MethodChannelQrBarCodeScannerDialog
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
               elevation: 1,
-              content: ScannerWidget(onScanSuccess: (code) {
-                if (code != null) {
-                  Navigator.pop(context);
-                  onScanSuccess(code);
-                }
-              }),
+              content: Container(
+                alignment: Alignment.center,
+                child: SizedBox(
+                  height: 400,
+                  width: 600,
+                  child: ScannerWidget(onScanSuccess: (code) {
+                    if (code != null) {
+                      Navigator.pop(context);
+                      onScanSuccess(code);
+                    }
+                  }),
+                ),
+              ),
             ),
           );
         });
@@ -89,9 +116,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
-          width: 500,
-          height: 450,
+        Flexible(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: _buildQrView(context),

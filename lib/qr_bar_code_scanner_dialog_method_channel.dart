@@ -50,7 +50,7 @@ class MethodChannelQrBarCodeScannerDialog
                   ),
                   height: 440,
                   width: 370,
-                  margin: const EdgeInsets.all(20),
+                  margin: const EdgeInsets.all(20.0),
                   padding: const EdgeInsets.all(2),
                   child: ScannerWidget(onScanSuccess: (code) {
                     if (code != null) {

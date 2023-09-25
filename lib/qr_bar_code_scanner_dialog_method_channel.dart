@@ -48,7 +48,7 @@ class MethodChannelQrBarCodeScannerDialog
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  height: 500,
+                  height: 450,
                   width: 370,
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(2),
@@ -196,7 +196,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 6,
-          cutOutSize: smallestDimension - 140),
+          cutOutSize: smallestDimension - 100),
     );
   }
 

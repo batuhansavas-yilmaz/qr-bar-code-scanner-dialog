@@ -196,7 +196,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 6,
-          cutOutSize: smallestDimension - 100),
+          cutOutSize: smallestDimension - 140),
     );
   }
 

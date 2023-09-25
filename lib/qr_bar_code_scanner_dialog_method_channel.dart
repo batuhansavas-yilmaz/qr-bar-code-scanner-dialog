@@ -90,7 +90,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         SizedBox(
-          width: 450,
+          width: 500,
           height: 450,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(10),

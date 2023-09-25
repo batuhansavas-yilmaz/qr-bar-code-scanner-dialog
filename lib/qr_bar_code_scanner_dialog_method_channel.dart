@@ -83,18 +83,18 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     super.dispose();
   }
 
+  bool isPressed = false;
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: _buildQrView(context),
-          ),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(10),
+          child: _buildQrView(context),
         ),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () {
@@ -103,10 +103,22 @@ class _ScannerWidgetState extends State<ScannerWidget> {
               child: const Text("Stop Scanning"),
             ),
             IconButton(
-                onPressed: () async {
-                  await controller!.toggleFlash();
-                },
-                icon: const Icon(Icons.flash_on_rounded)),
+              onPressed: () async {
+                await controller!.toggleFlash();
+                setState(() {
+                  isPressed = !isPressed;
+                });
+              },
+              icon: isPressed
+                  ? Icon(
+                      Icons.flash_on_rounded,
+                      color: Colors.yellow,
+                    )
+                  : Icon(
+                      Icons.flash_off_rounded,
+                      color: Colors.grey,
+                    ),
+            ),
           ],
         )
       ],

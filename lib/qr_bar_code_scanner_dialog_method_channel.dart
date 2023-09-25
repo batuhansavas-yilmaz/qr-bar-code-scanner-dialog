@@ -104,14 +104,18 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             child: _buildQrView(context),
           ),
         ),
+        SizedBox(
+          width: 600,
+          height: 10,
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             IconButton(
               icon: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
+                  return ScaleTransition(child: child, scale: animation);
                 },
                 child: Icon(
                   isPressed2Camera ? Icons.camera_front : Icons.camera_rear,
@@ -139,9 +143,9 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                 });
               },
               icon: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
+                duration: Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
+                  return ScaleTransition(child: child, scale: animation);
                 },
                 child: Icon(
                   isPressedFlash
@@ -170,13 +174,11 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         _onQRViewCreated(controller);
       },
       overlay: QrScannerOverlayShape(
-        borderColor: const Color.fromARGB(255, 85, 2, 2),
-        borderRadius: 10,
-        borderLength: 30,
-        cutOutHeight: 400,
-        cutOutWidth: 600,
-        borderWidth: 3,
-      ),
+          borderColor: Color.fromARGB(255, 85, 2, 2),
+          borderRadius: 10,
+          borderLength: 30,
+          borderWidth: 6,
+          cutOutSize: smallestDimension - 140),
     );
   }
 

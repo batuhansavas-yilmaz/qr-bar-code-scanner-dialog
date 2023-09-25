@@ -162,19 +162,22 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                         isPressedFlash = !isPressedFlash;
                       });
                     },
-              icon: AnimatedSwitcher(
-                duration: const Duration(milliseconds: 200),
-                transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(scale: animation, child: child);
-                },
-                child: Icon(
-                  isPressedFlash
-                      ? Icons.flash_on_rounded
-                      : Icons.flash_off_rounded,
-                  color: isPressedFlash ? Colors.yellow : Colors.grey,
-                  key: ValueKey<bool>(isPressedFlash),
-                ),
-              ),
+              icon: isPressed2Camera
+                  ? Icon(Icons.flash_off_rounded)
+                  : AnimatedSwitcher(
+                      duration: const Duration(milliseconds: 200),
+                      transitionBuilder:
+                          (Widget child, Animation<double> animation) {
+                        return ScaleTransition(scale: animation, child: child);
+                      },
+                      child: Icon(
+                        isPressedFlash
+                            ? Icons.flash_on_rounded
+                            : Icons.flash_off_rounded,
+                        color: isPressedFlash ? Colors.yellow : Colors.grey,
+                        key: ValueKey<bool>(isPressedFlash),
+                      ),
+                    ),
             ),
           ],
         )

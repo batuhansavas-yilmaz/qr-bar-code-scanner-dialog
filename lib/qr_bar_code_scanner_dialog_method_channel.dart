@@ -59,18 +59,20 @@ class MethodChannelQrBarCodeScannerDialog
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(15.0))),
               elevation: 1,
-              content: Container(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  height: 400,
-                  width: 600,
-                  child: ScannerWidget(onScanSuccess: (code) {
-                    if (code != null) {
-                      Navigator.pop(context);
-                      onScanSuccess(code);
-                    }
-                  }),
-                ),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SizedBox(
+                    height: 600,
+                    width: 600,
+                    child: ScannerWidget(onScanSuccess: (code) {
+                      if (code != null) {
+                        Navigator.pop(context);
+                        onScanSuccess(code);
+                      }
+                    }),
+                  ),
+                ],
               ),
             ),
           );

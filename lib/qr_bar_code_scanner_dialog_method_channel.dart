@@ -89,9 +89,13 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(10),
-          child: _buildQrView(context),
+        SizedBox(
+          width: 450,
+          height: 450,
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: _buildQrView(context),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,

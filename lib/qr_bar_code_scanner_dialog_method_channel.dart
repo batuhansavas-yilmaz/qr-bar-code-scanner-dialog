@@ -154,12 +154,14 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             IconButton(
               splashColor: Colors.transparent,
               highlightColor: Colors.transparent,
-              onPressed: () async {
-                await controller!.toggleFlash();
-                setState(() {
-                  isPressedFlash = !isPressedFlash;
-                });
-              },
+              onPressed: isPressed2Camera
+                  ? null
+                  : () async {
+                      await controller!.toggleFlash();
+                      setState(() {
+                        isPressedFlash = !isPressedFlash;
+                      });
+                    },
               icon: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {

@@ -48,7 +48,7 @@ class MethodChannelQrBarCodeScannerDialog
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  height: 450,
+                  height: 440,
                   width: 370,
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(2),

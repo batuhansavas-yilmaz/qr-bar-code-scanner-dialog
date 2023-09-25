@@ -63,7 +63,7 @@ class MethodChannelQrBarCodeScannerDialog
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   SizedBox(
-                    height: 600,
+                    height: 400,
                     width: 600,
                     child: ScannerWidget(onScanSuccess: (code) {
                       if (code != null) {
@@ -127,6 +127,9 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            IconButton(
+                onPressed: () {},
+                icon: Icon(CupertinoIcons.camera_rotate_fill)),
             ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);

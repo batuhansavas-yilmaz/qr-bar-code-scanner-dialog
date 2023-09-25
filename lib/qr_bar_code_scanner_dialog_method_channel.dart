@@ -98,10 +98,14 @@ class _ScannerWidgetState extends State<ScannerWidget> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Flexible(
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: _buildQrView(context),
+        SizedBox(
+          width: 800,
+          height: 800,
+          child: Flexible(
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: _buildQrView(context),
+            ),
           ),
         ),
         Row(
@@ -170,11 +174,11 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         _onQRViewCreated(controller);
       },
       overlay: QrScannerOverlayShape(
-          borderColor: const Color.fromARGB(255, 27, 94, 32),
+          borderColor: Color.fromARGB(255, 85, 2, 2),
           borderRadius: 10,
           borderLength: 30,
-          borderWidth: 10,
-          cutOutSize: smallestDimension - 100),
+          borderWidth: 3,
+          cutOutSize: smallestDimension - 140),
     );
   }
 

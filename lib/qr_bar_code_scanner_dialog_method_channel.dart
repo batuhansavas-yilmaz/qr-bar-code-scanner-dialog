@@ -48,8 +48,8 @@ class MethodChannelQrBarCodeScannerDialog
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  height: 400,
-                  width: 380,
+                  height: 500,
+                  width: 370,
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(2),
                   child: ScannerWidget(onScanSuccess: (code) {
@@ -118,6 +118,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               icon: AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {
@@ -150,6 +152,8 @@ class _ScannerWidgetState extends State<ScannerWidget> {
               width: 30,
             ),
             IconButton(
+              splashColor: Colors.transparent,
+              highlightColor: Colors.transparent,
               onPressed: () async {
                 await controller!.toggleFlash();
                 setState(() {

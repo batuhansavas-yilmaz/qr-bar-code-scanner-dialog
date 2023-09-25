@@ -1,9 +1,11 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 import 'qr_bar_code_scanner_dialog_platform_interface.dart';
 
@@ -27,27 +29,25 @@ class MethodChannelQrBarCodeScannerDialog
     /// context is required to show alert in non-web platforms
     assert(context != null);
 
-    showDialog(
+    showCupertinoDialog(
+        barrierDismissible: true,
         context: context!,
-        builder: (context) => Container(
-              alignment: Alignment.center,
-              child: Container(
-                height: 400,
-                width: 600,
-                margin: const EdgeInsets.all(20),
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: ScannerWidget(onScanSuccess: (code) {
-                  if (code != null) {
-                    Navigator.pop(context);
-                    onScanSuccess(code);
-                  }
-                }),
-              ),
-            ));
+        builder: (context) {
+          return ResponsiveScaledBox(
+            width: 450,
+            child: AlertDialog(
+              shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
+              elevation: 1,
+              content: ScannerWidget(onScanSuccess: (code) {
+                if (code != null) {
+                  Navigator.pop(context);
+                  onScanSuccess(code);
+                }
+              }),
+            ),
+          );
+        });
   }
 }
 
@@ -98,8 +98,13 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: const Text("Stop scanning"),
+          child: const Text("Stop Scanning"),
         ),
+        IconButton(
+            onPressed: () async {
+              await controller!.toggleFlash();
+            },
+            icon: const Icon(Icons.flash_on_rounded))
       ],
     );
   }

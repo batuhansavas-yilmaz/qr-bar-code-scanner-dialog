@@ -34,24 +34,31 @@ class MethodChannelQrBarCodeScannerDialog
         builder: (context) {
           return ResponsiveScaledBox(
             width: 450,
-            child: AlertDialog(
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(15.0))),
-              elevation: 1,
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 400,
-                    width: 600,
-                    child: ScannerWidget(onScanSuccess: (code) {
-                      if (code != null) {
-                        Navigator.pop(context);
-                        onScanSuccess(code);
-                      }
-                    }),
+            child: Container(
+              alignment: Alignment.center,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  side: const BorderSide(color: Colors.white, width: 0),
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: Colors.white,
+                elevation: 1,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
                   ),
-                ],
+                  height: 400,
+                  width: 600,
+                  margin: const EdgeInsets.all(20),
+                  padding: const EdgeInsets.all(2),
+                  child: ScannerWidget(onScanSuccess: (code) {
+                    if (code != null) {
+                      Navigator.pop(context);
+                      onScanSuccess(code);
+                    }
+                  }),
+                ),
               ),
             ),
           );
@@ -59,6 +66,12 @@ class MethodChannelQrBarCodeScannerDialog
   }
 }
 
+/**
+ * 
+ * 
+ * ,
+ * 
+ */
 class ScannerWidget extends StatefulWidget {
   final void Function(String? code) onScanSuccess;
 
@@ -105,7 +118,6 @@ class _ScannerWidgetState extends State<ScannerWidget> {
           ),
         ),
         SizedBox(
-          width: 600,
           height: 10,
         ),
         Row(
@@ -133,7 +145,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text("Stop Scanning"),
+              child: const Icon(CupertinoIcons.stop),
             ),
             IconButton(
               onPressed: () async {
@@ -174,7 +186,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         _onQRViewCreated(controller);
       },
       overlay: QrScannerOverlayShape(
-          borderColor: Color.fromARGB(255, 85, 2, 2),
+          borderColor: Color.fromARGB(255, 255, 0, 0),
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 6,

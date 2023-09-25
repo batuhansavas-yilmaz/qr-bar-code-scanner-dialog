@@ -49,7 +49,7 @@ class MethodChannelQrBarCodeScannerDialog
                     borderRadius: BorderRadius.circular(10),
                   ),
                   height: 400,
-                  width: 600,
+                  width: 400,
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(2),
                   child: ScannerWidget(onScanSuccess: (code) {

@@ -49,7 +49,7 @@ class MethodChannelQrBarCodeScannerDialog
                     borderRadius: BorderRadius.circular(10),
                   ),
                   height: 400,
-                  width: 400,
+                  width: 380,
                   margin: const EdgeInsets.all(20),
                   padding: const EdgeInsets.all(2),
                   child: ScannerWidget(onScanSuccess: (code) {
@@ -111,17 +111,17 @@ class _ScannerWidgetState extends State<ScannerWidget> {
             child: _buildQrView(context),
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
               icon: AnimatedSwitcher(
-                duration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(child: child, scale: animation);
+                  return ScaleTransition(scale: animation, child: child);
                 },
                 child: Icon(
                   isPressed2Camera ? Icons.camera_front : Icons.camera_rear,
@@ -135,11 +135,19 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                 });
               },
             ),
+            const SizedBox(
+              width: 30,
+            ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  shape: const CircleBorder(eccentricity: 0)),
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Icon(CupertinoIcons.stop),
+              child: const Icon(CupertinoIcons.stop_fill),
+            ),
+            const SizedBox(
+              width: 30,
             ),
             IconButton(
               onPressed: () async {
@@ -149,9 +157,9 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                 });
               },
               icon: AnimatedSwitcher(
-                duration: Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 200),
                 transitionBuilder: (Widget child, Animation<double> animation) {
-                  return ScaleTransition(child: child, scale: animation);
+                  return ScaleTransition(scale: animation, child: child);
                 },
                 child: Icon(
                   isPressedFlash
@@ -180,7 +188,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
         _onQRViewCreated(controller);
       },
       overlay: QrScannerOverlayShape(
-          borderColor: Color.fromARGB(255, 255, 0, 0),
+          borderColor: const Color.fromARGB(255, 255, 0, 0),
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 6,

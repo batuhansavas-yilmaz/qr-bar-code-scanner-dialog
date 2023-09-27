@@ -33,7 +33,7 @@ class MethodChannelQrBarCodeScannerDialog
         context: context!,
         builder: (context) {
           return ResponsiveScaledBox(
-            width: 450,
+            width: MediaQuery.of(context).size.shortestSide < 600 ? 450 : 600,
             child: Container(
               alignment: Alignment.center,
               child: Card(
@@ -163,7 +163,7 @@ class _ScannerWidgetState extends State<ScannerWidget> {
                       });
                     },
               icon: isPressed2Camera
-                  ? Icon(Icons.flash_off_rounded)
+                  ? const Icon(Icons.flash_off_rounded)
                   : AnimatedSwitcher(
                       duration: const Duration(milliseconds: 200),
                       transitionBuilder:
